@@ -3,12 +3,10 @@
 
 #include "UnitFactories.h"
 
+//will be supplemented in the future
 class Game {
 public:
-    Army* CreateArmy(FractionFactory& fraction);
-
-    static void StartGame();
-
+    void StartGame();
 };
 
 

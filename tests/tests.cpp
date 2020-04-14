@@ -1,42 +1,49 @@
 #include <gtest/gtest.h>
 
-#include "Units.h"
-#include "UnitFactories.h"
+#include "../game/Units.h"
+#include "../game/UnitFactories.h"
 
 class UnitFixture : public ::testing::Test {
 public:
     virtual ~UnitFixture() {
         delete u;
-        delete a;
-        delete c;
-        delete i;
+        
+        delete sa;
+        delete sc;
+        delete si;
+
+        delete na;
+        delete nc;
+        delete ni;
     }
 
 protected:
     virtual void SetUp() {
         u = new Unit();
-        a = new Agent();
-        c = new Cavalryman();
-        i = new Infantryman();
+
+        sa = new SouthernAgent();
+        sc = new SouthernCavalryman();
+        si = new SouthernInfantryman();
+
+        na = new NorthernAgent();
+        nc = new NorthernCavalryman();
+        ni = new NorthernInfantryman();        
     }
 
     Unit* u;
-    Agent* a;
-    Cavalryman* c;
-    Infantryman* i;
+    SouthernAgent* sa;
+    SouthernCavalryman* sc;
+    SouthernInfantryman* si;
+
+    NorthernAgent* na;
+    NorthernCavalryman* nc;
+    NorthernInfantryman* ni;
 };
 
 class FactoryFixture : public ::testing::Test {
 public:
     virtual ~FactoryFixture() {
-        n->CreateCavalrymen().clear();
-        n->CreateInfantrymen().clear();
-        n->CreateAgents().clear();
         delete n;
-
-        s->CreateCavalrymen().clear();
-        s->CreateInfantrymen().clear();
-        s->CreateAgents().clear();
         delete s;
     }
 
@@ -52,29 +59,37 @@ protected:
 
 TEST_F(UnitFixture, CheckUnitsCost) {
     ASSERT_EQ(0, u->GetCost());
-    ASSERT_EQ(1500, a->GetCost());
-    ASSERT_EQ(1000, c->GetCost());
-    ASSERT_EQ(500, i->GetCost());
+    ASSERT_EQ(1400, sa->GetCost());
+    ASSERT_EQ(1000, sc->GetCost());
+    ASSERT_EQ(700, si->GetCost());
+
+    ASSERT_EQ(1500, na->GetCost());
+    ASSERT_EQ(800, nc->GetCost());
+    ASSERT_EQ(800, ni->GetCost());
     
 }
 
 TEST_F(UnitFixture, CheckUnitStatus) {
     ASSERT_EQ(true, u->IsDead());
-    ASSERT_EQ(false, a->IsDead());
-    ASSERT_EQ(false, c->IsDead());
-    ASSERT_EQ(false, i->IsDead());
+    ASSERT_EQ(false, sa->IsDead());
+    ASSERT_EQ(false, sc->IsDead());
+    ASSERT_EQ(false, si->IsDead());
+
+    ASSERT_EQ(false, na->IsDead());
+    ASSERT_EQ(false, nc->IsDead());
+    ASSERT_EQ(false, ni->IsDead());
 }
 
-TEST_F(FactoryFixture, CheckNorthernersComplectation) {
-    ASSERT_EQ(n->CreateInfantrymen().size(), 20);
-    ASSERT_EQ(n->CreateAgents().size(), 1);
-    ASSERT_EQ(n->CreateCavalrymen().size(), 15);
+TEST_F(FactoryFixture, CheckNorthernersProducts) {
+    ASSERT_EQ(n->CreateInfantryman().GetCost(), 800);
+    ASSERT_EQ(n->CreateAgent().GetCost(), 1500);
+    ASSERT_EQ(n->CreateCavalryman().GetCost(), 800);
 }
 
-TEST_F(FactoryFixture, CheckSouthernersComplectation) {
-    ASSERT_EQ(s->CreateInfantrymen().size(), 20);
-    ASSERT_EQ(s->CreateAgents().size(), 2);
-    ASSERT_EQ(s->CreateCavalrymen().size(), 10);
+TEST_F(FactoryFixture, CheckSouthernersProducts) {
+    ASSERT_EQ(s->CreateInfantryman().GetCost(), 700);
+    ASSERT_EQ(s->CreateAgent().GetCost(), 1400);
+    ASSERT_EQ(s->CreateCavalryman().GetCost(), 1000);
 }
 
 

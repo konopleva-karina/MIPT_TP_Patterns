@@ -2,66 +2,28 @@
 
 //============ Southerners ============//
 
-std::vector<Cavalryman*> Southerners::CreateCavalrymen() {
-    std::vector<Cavalryman*> cavalrymen;
-    cavalrymen.reserve(kCavalrymenCount);
-
-    for (int i = 0; i < kCavalrymenCount; ++i) {
-        cavalrymen.push_back(new Cavalryman);
-    }
-
-    return cavalrymen;
+Cavalryman Southerners::CreateCavalryman() {
+    return SouthernCavalryman();
 }
 
-std::vector<Infantryman*> Southerners::CreateInfantrymen() {
-    std::vector<Infantryman*> infantrymen;
-    infantrymen.reserve(kInfantrymenCount);
-    for (int i = 0; i < kInfantrymenCount; ++i) {
-        infantrymen.push_back(new Infantryman);
-    }
-
-    return infantrymen;
+Infantryman Southerners::CreateInfantryman() {
+    return SouthernInfantryman();
 }
 
-std::vector<Agent*> Southerners::CreateAgents() {
-    std::vector<Agent*> agents;
-    agents.reserve(kAgentCount);
-    for (int i = 0; i < kAgentCount; ++i) {
-        agents.push_back(new Agent);
-    }
-
-    return agents;
+Agent Southerners::CreateAgent() {
+    return SouthernAgent();
 }
 
 //============ Northerners ============//
 
-std::vector<Cavalryman*> Northerners::CreateCavalrymen() {
-    std::vector<Cavalryman*> cavalrymen;
-    cavalrymen.reserve(kCavalrymenCount);
-
-    for (int i = 0; i < kCavalrymenCount; ++i) {
-        cavalrymen.push_back(new Cavalryman);
-    }
-
-    return cavalrymen;
+Cavalryman Northerners::CreateCavalryman() {
+    return NorthernCavalryman();
 }
 
-std::vector<Infantryman*> Northerners::CreateInfantrymen() {
-    std::vector<Infantryman*> infantrymen;
-    infantrymen.reserve(kInfantrymenCount);
-    for (int i = 0; i < kInfantrymenCount; ++i) {
-        infantrymen.push_back(new Infantryman);
-    }
-
-    return infantrymen;
+Infantryman Northerners::CreateInfantryman() {
+    return NorthernInfantryman();
 }
 
-std::vector<Agent*> Northerners::CreateAgents() {
-    std::vector<Agent*> agents;
-    agents.reserve(kAgentCount);
-    for (int i = 0; i < kAgentCount; ++i) {
-        agents.push_back(new Agent);
-    }
-
-    return agents;
+Agent Northerners::CreateAgent() {
+    return NorthernAgent();
 }

@@ -6,5 +6,5 @@ add_subdirectory(googletest)
 include_directories(googletest/googletest/include)
 
 set(SOURCE_FILES tests.cpp)
-add_executable(tests Units.h UnitFactories.h UnitFactories.cpp tests.cpp)
+add_executable(tests ../game/Units.h ../game/UnitFactories.h ../game/UnitFactories.cpp tests.cpp)
 target_link_libraries(tests gtest)

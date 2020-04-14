@@ -1,6 +1,7 @@
 #ifndef GAME_UNITS_H
 #define GAME_UNITS_H
 
+
 class Unit {
 protected:
     int health_ = 0;
@@ -19,36 +20,87 @@ public:
     }
 };
 
+
 class Agent : public Unit {
     const static int kAgentHealth = 150;
-    const static int kAgentCost = 1500;
-
 public:
     Agent() : Unit() {
         health_ = kAgentHealth;
-        cost_ = kAgentCost;
     }
 };
 
+
+class NorthernAgent : public Agent {
+    const static int kNorthernAgentCost = 1500;
+public:
+    NorthernAgent() : Agent() {
+        cost_ = kNorthernAgentCost;
+    }
+};
+
+
+class SouthernAgent : public Agent {
+    const static int kSouthernAgentCost = 1400;
+public:
+    SouthernAgent() : Agent() {
+        cost_ = kSouthernAgentCost;
+    }
+};
+
+
 class Cavalryman : public Unit {
     const static int kCavalrymanHealth = 100;
-    const static int kCavalrymanCost = 1000;
 
 public:
     Cavalryman() : Unit() {
         health_ = kCavalrymanHealth;
-        cost_ = kCavalrymanCost;
     }
 };
 
+
+class NorthernCavalryman : public Cavalryman {
+    const static int kNorthernCavalrymanCost = 800;
+
+public:
+    NorthernCavalryman() : Cavalryman() {
+        cost_ = kNorthernCavalrymanCost;
+    }
+};
+
+class SouthernCavalryman : public Cavalryman {
+    const static int kSouthernCavalrymanCost = 1000;
+
+public:
+    SouthernCavalryman() : Cavalryman() {
+        cost_ = kSouthernCavalrymanCost;
+    }
+};
+
+
 class Infantryman : public Unit {
     const static int kInfantrymanHealth = 50;
-    const static int kInfantrymanCost = 500;
 
 public:
     Infantryman() : Unit() {
         health_ = kInfantrymanHealth;
-        cost_ = kInfantrymanCost;
+    }
+};
+
+class NorthernInfantryman : public Infantryman{
+    const static int kNorthernInfantrymanCost = 800;
+
+public:
+    NorthernInfantryman() : Infantryman() {
+        cost_ = kNorthernInfantrymanCost;
+    }
+};
+
+class SouthernInfantryman : public Infantryman{
+    const static int kSouthernInfantrymanCost = 700;
+
+public:
+    SouthernInfantryman() : Infantryman() {
+        cost_ = kSouthernInfantrymanCost;
     }
 };
 
